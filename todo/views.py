@@ -14,6 +14,12 @@ def mark_as_done(rqst,pk):
     task.save()
     return redirect('home')
 
+def mark_as_undone(rqst,pk):
+    task = get_object_or_404(Task,pk=pk)
+    task.is_completed = False
+    task.save()
+    return redirect('home')
+
 def edit_task(rqst,pk):
     get_task = get_object_or_404(Task, pk=pk)
     if rqst.method == 'POST':
